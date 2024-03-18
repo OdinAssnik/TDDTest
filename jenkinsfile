@@ -1,0 +1,45 @@
+@Library("shared-libraries")
+import io.libs.SqlUtils
+import io.libs.ProjectHelpers
+import io.libs.Utils
+
+def utils = new Utils()
+def projectHelpers = new ProjectHelpers()
+
+pipeline {
+
+    parameters {
+        string(defaultValue: "${env.jenkinsAgent}", description: 'Нода дженкинса, на которой запускать пайплайн. По умолчанию master', name: 'jenkinsAgent')
+    }
+
+    agent {
+        label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "test" : env.jenkinsAgent}"
+    }
+
+    stages {
+        stage("Запуск"){
+            updateDbTask()
+        }
+    }
+
+
+}
+
+//def updateDbTask(platform1c, infobase, storage1cPath, storageUser, storagePwd, connString, admin1cUser, admin1cPwd) {
+def updateDbTask() {
+    return {
+        //stage("Загрузка из хранилища ${infobase}") {
+            stage("Загрузка из хранилища") {
+            timestamps {
+                prHelpers = new ProjectHelpers()
+
+                //if (storage1cPath == null || storage1cPath.isEmpty()) {
+                //    return
+                //}
+
+                //prHelpers.loadCfgFrom1CStorage(storage1cPath, storageUser, storagePwd, connString, admin1cUser, admin1cPwd, platform1c)
+                //prHelpers.updateInfobase(connString, admin1cUser, admin1cPwd, platform1c)
+            }
+        }
+    }
+}
