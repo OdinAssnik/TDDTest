@@ -17,8 +17,10 @@ pipeline {
     }
 
     stages {
-        stage("Запуск"){
-            updateDbTask()
+        steps{
+            stage("Запуск"){
+                updateDbTask()
+            }
         }
     }
 
@@ -30,9 +32,8 @@ def updateDbTask() {
     return {
         //stage("Загрузка из хранилища ${infobase}") {
             stage("Загрузка из хранилища") {
-                steps{
-                    timestamps {
-                        prHelpers = new ProjectHelpers()
+                timestamps {
+                    prHelpers = new ProjectHelpers()
 
                 //if (storage1cPath == null || storage1cPath.isEmpty()) {
                 //    return
@@ -40,8 +41,7 @@ def updateDbTask() {
 
                 //prHelpers.loadCfgFrom1CStorage(storage1cPath, storageUser, storagePwd, connString, admin1cUser, admin1cPwd, platform1c)
                 //prHelpers.updateInfobase(connString, admin1cUser, admin1cPwd, platform1c)
-                    }        
-            }
+            }        
         }
     }
 }
