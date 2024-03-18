@@ -11,6 +11,7 @@ pipeline {
     parameters {
         string(defaultValue: "${env.jenkinsAgent}", description: 'Нода дженкинса, на которой запускать пайплайн. По умолчанию ___________', name: 'jenkinsAgent')
         string(defaultValue: "${env.v8version}", description: 'Версия платформы 1с, например 8.3.12.1685. По умолчанию будет использована последня версия среди установленных', name: 'v8version')
+        string(defaultValue: "${env.ibConnection}", description: 'Путь подключения к базе 1с', name: 'ibConnection')
         string(defaultValue: "${env.db-user}", description: 'Имя администратора с правом открытия вншних обработок (!) для базы тестирования 1с Должен быть одинаковым для всех баз', name: 'db-user}')
         string(defaultValue: "${env.db-pwd}", description: 'Пароль администратора базы тестирования 1C.', name: 'db-pwd')
         string(defaultValue: "${env.storage1cPath}", description: 'Путь к хранилищу 1С для обновления копий базы тестирования. Например D:/temp/storage1c/erp,D:/temp/storage1c/upp', name: 'storage1cPath')
@@ -18,7 +19,7 @@ pipeline {
         string(defaultValue: "${env.storagePassword}", description: 'Пароль пользователя хранилища', name: 'storagePassword')
     }
 
-    agent {
+    agent { 
         label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "test" : env.jenkinsAgent}"ы
     }
 
