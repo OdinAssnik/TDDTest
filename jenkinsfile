@@ -30,8 +30,9 @@ def updateDbTask() {
     return {
         //stage("Загрузка из хранилища ${infobase}") {
             stage("Загрузка из хранилища") {
-            timestamps {
-                prHelpers = new ProjectHelpers()
+                steps{
+                    timestamps {
+                        prHelpers = new ProjectHelpers()
 
                 //if (storage1cPath == null || storage1cPath.isEmpty()) {
                 //    return
@@ -39,6 +40,7 @@ def updateDbTask() {
 
                 //prHelpers.loadCfgFrom1CStorage(storage1cPath, storageUser, storagePwd, connString, admin1cUser, admin1cPwd, platform1c)
                 //prHelpers.updateInfobase(connString, admin1cUser, admin1cPwd, platform1c)
+                    }        
             }
         }
     }
