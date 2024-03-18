@@ -31,11 +31,13 @@ package io.libs
 // Параметры:
 //
 //
-def loadCfgFrom1CStorage() {
+def loadCfgFrom1CStorage(platform1c, storages1cPath, storageUser, storagePassword, ibConnection, db-user, db-pwd) {
     utils = new Utils()
 
     //returnCode = utils.cmd("runner loadrepo --storage-name ${storageTCP} --storage-user ${storageUser} ${storagePwdLine} --ibconnection ${connString} --db-user ${admin1cUser} --db-pwd ${admin1cPassword} ${platformLine}")
     //if (returnCode != 0) {
     //     utils.raiseError("Загрузка конфигурации из 1С хранилища  ${storageTCP} завершилась с ошибкой. Для подробностей смотрите логи.")
     //}
+   returnCode = utils.cmd("runner loadrepo --storage-name ${storages1cPath} --storage-user ${storageUser} ${storagePassword} --ibconnection ${ibConnection} --db-user ${db-user} --db-pwd ${db-pwd} ${platform1c}")
+
 }

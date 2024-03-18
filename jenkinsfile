@@ -9,27 +9,32 @@ def projectHelpers = new ProjectHelpers()
 pipeline {
 
     parameters {
-        string(defaultValue: "${env.jenkinsAgent}", description: 'Нода дженкинса, на которой запускать пайплайн. По умолчанию master', name: 'jenkinsAgent')
+        string(defaultValue: "${env.jenkinsAgent}", description: 'Нода дженкинса, на которой запускать пайплайн. По умолчанию ___________', name: 'jenkinsAgent')
+        string(defaultValue: "${env.v8version}", description: 'Версия платформы 1с, например 8.3.12.1685. По умолчанию будет использована последня версия среди установленных', name: 'v8version')
+        string(defaultValue: "${env.db-user}", description: 'Имя администратора с правом открытия вншних обработок (!) для базы тестирования 1с Должен быть одинаковым для всех баз', name: 'db-user}')
+        string(defaultValue: "${env.db-pwd}", description: 'Пароль администратора базы тестирования 1C.', name: 'db-pwd')
+        string(defaultValue: "${env.storage1cPath}", description: 'Путь к хранилищу 1С для обновления копий базы тестирования. Например D:/temp/storage1c/erp,D:/temp/storage1c/upp', name: 'storage1cPath')
+        string(defaultValue: "${env.storageUser}", description: 'Имя пользователя хранилища', name: 'storageUser')
+        string(defaultValue: "${env.storagePassword}", description: 'Пароль пользователя хранилища', name: 'storagePassword')
     }
 
     agent {
-        label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "test" : env.jenkinsAgent}"
+        label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "test" : env.jenkinsAgent}"ы
     }
 
     stages {
         stage("Запуск"){
             steps{
-                updateDbTask()
+                updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, db-user, db-pwd)
             }
       }
     }
 }
 
-//
-//def updateDbTask(platform1c, infobase, storage1cPath, storageUser, storagePwd, connString, admin1cUser, admin1cPwd) {
-def updateDbTask() {
+
+def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, db-user, db-pwd) {
     return {
-        //stage("Загрузка из хранилища ${infobase}") {
+        stage("Загрузка из хранилища ${infobase}") {
             stage("Загрузка из хранилища") {
                 timestamps {
                     prHelpers = new ProjectHelpers()
@@ -40,6 +45,9 @@ def updateDbTask() {
 
                 //prHelpers.loadCfgFrom1CStorage(storage1cPath, storageUser, storagePwd, connString, admin1cUser, admin1cPwd, platform1c)
                 //prHelpers.updateInfobase(connString, admin1cUser, admin1cPwd, platform1c)
+
+                prHelpers.loadCfgFrom1CStorage(v8version, storage1cPath, storageUser, storagePassword, ibConnection, db-user, db-pwd)
+                }            
             }        
         }
     }
