@@ -17,13 +17,11 @@ pipeline {
     }
 
     stages {
-        steps{
-            stage("Запуск"){
+        stage("Запуск"){
+            steps{
                 updateDbTask()
             }
-        }
     }
-
 
 }
 //
