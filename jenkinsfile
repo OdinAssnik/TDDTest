@@ -20,7 +20,7 @@ pipeline {
     }
 
     agent { 
-        label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "test" : env.jenkinsAgent}"ы
+        label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "test" : env.jenkinsAgent}"
     }
 
     stages {
