@@ -32,12 +32,10 @@ package io.libs
 //
 //
 def loadCfgFrom1CStorage(platform1c, storages1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword) {
+   
     utils = new Utils()
 
-    //returnCode = utils.cmd("runner loadrepo --storage-name ${storageTCP} --storage-user ${storageUser} ${storagePwdLine} --ibconnection ${connString} --db-user ${admin1cUser} --db-pwd ${admin1cPassword} ${platformLine}")
-
-   //returnCode = utils.cmd("runner loadrepo --storage-name ${storages1cPath} --storage-user ${storageUser} ${storagePassword} --ibconnection ${ibConnection} --db-user ${ibUser} --db-pwd ${db-pwd} ${ibPassword}")
-   returnCode = utils.cmd("vrunner loadrepo --storage-name ""C:/Users/Адрей/OneDrive/Рабочий стол/МОЯ ВАНЕССА/хранилище"" --storage-user ""Администратор"" --storage-pwd ""123456"" --ibconnection ""/FC:/Users/Адрей/OneDrive/Документы/1C/Platform8Demo1"" --db-user ""Администратор"" --db-pwd ""123456")
+    returnCode = utils.cmd("runner loadrepo --storage-name ${storages1cPath} --storage-user ${storageUser} ${storagePassword} --ibconnection ${ibConnection} --db-user ${ibUser} --db-pwd ${db-pwd} ${ibPassword}")
 
     if (returnCode != 0) {
          utils.raiseError("Загрузка конфигурации из 1С хранилища  ${storages1cPath} завершилась с ошибкой. Для подробностей смотрите логи.")

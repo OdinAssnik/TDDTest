@@ -24,7 +24,7 @@ pipeline {
     }
 
     stages {
-        stage("Запуск"){
+        stage("Подготовка базы"){
             steps{
              //bat script: "chcp 65001\n call vrunner loadrepo"       
              //   bat script: "chcp 65001\n call vrunner loadrepo --storage-name ""C:/Users/Адрей/OneDrive/Рабочий стол/МОЯ ВАНЕССА/хранилище"" --storage-user ""Администратор"" --storage-pwd ""123456"" --ibconnection ""/FC:/Users/Адрей/OneDrive/Документы/1C/Platform8Demo1"" --db-user ""Администратор"" --db-pwd ""123456"""
@@ -36,25 +36,23 @@ pipeline {
 
 
 def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword) {
-//def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection) {
-    //return {
-        stage("Загрузка из хранилища") {
-            stage("Загрузка из хранилища") {
-                bat script: "chcp 65001\n call vrunner loadrepo" 
-                //timestamps {
-                //    prHelpers = new ProjectHelpers()
+    
+    prHelpers = new ProjectHelpers()
 
-                //if (storage1cPath == null || storage1cPath.isEmpty()) {
-                //    return
-                //}
+    stage("Загрузка из хранилища") {
+            //timestamps {
+           
 
-                //prHelpers.updateInfobase(connString, admin1cUser, admin1cPwd, platform1c)
+            //if (storage1cPath == null || storage1cPath.isEmpty()) {
+            //    return
+            //}
+            //prHelpers.updateInfobase(connString, admin1cUser, admin1cPwd, platform1c)
+            prHelpers.loadCfgFrom1CStorage(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
+            //prHelpers.updateInfobase(v8version, ibConnection, ibUser, ibPassword)
+            //}                  
+    }
 
-                //prHelpers.loadCfgFrom1CStorage(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
-                //prHelpers.updateInfobase(v8version, ibConnection, ibUser, ibPassword)
-
-                //}            
-            }        
-        }
-    //}
+    stage("Обновление базы"){
+        prHelpers.updateInfobase(v8version, ibConnection, ibUser, ibPassword)        
+    }
 }
