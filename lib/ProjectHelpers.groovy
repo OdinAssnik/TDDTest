@@ -41,3 +41,9 @@ def loadCfgFrom1CStorage(platform1c, storages1cPath, storageUser, storagePasswor
    returnCode = utils.cmd("runner loadrepo --storage-name ${storages1cPath} --storage-user ${storageUser} ${storagePassword} --ibconnection ${ibConnection} --db-user ${db-user} --db-pwd ${db-pwd} ${platform1c}")
 
 }
+
+def loadCfgFrom1CStorage1() {
+    
+    utils = new Utils()
+
+}
