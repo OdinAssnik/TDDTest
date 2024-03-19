@@ -35,10 +35,12 @@ def loadCfgFrom1CStorage(platform1c, storages1cPath, storageUser, storagePasswor
     utils = new Utils()
 
     //returnCode = utils.cmd("runner loadrepo --storage-name ${storageTCP} --storage-user ${storageUser} ${storagePwdLine} --ibconnection ${connString} --db-user ${admin1cUser} --db-pwd ${admin1cPassword} ${platformLine}")
-    //if (returnCode != 0) {
-    //     utils.raiseError("Загрузка конфигурации из 1С хранилища  ${storageTCP} завершилась с ошибкой. Для подробностей смотрите логи.")
-    //}
+
    returnCode = utils.cmd("runner loadrepo --storage-name ${storages1cPath} --storage-user ${storageUser} ${storagePassword} --ibconnection ${ibConnection} --db-user ${ibUser} --db-pwd ${db-pwd} ${ibPassword}")
+
+    if (returnCode != 0) {
+         utils.raiseError("Загрузка конфигурации из 1С хранилища  ${storages1cPath} завершилась с ошибкой. Для подробностей смотрите логи.")
+    }
 
 }
 
@@ -68,9 +70,9 @@ def updateInfobase(v8version, ibConnection, ibUser, ibPassword) {
         platformLine = "--v8version ${platform}"
     }
 
-    returnCode = utils.cmd("runner updatedb --ibconnection ${connString} ${admin1cUserLine} ${admin1cPassLine} ${platformLine}")
+    returnCode = utils.cmd("runner updatedb --ibconnection ${ibConnection} ${admin1cUserLine} ${admin1cPassLine} ${v8version}")
 
-//    if (returnCode != 0) {
-//        utils.raiseError("Обновление базы ${connString} в режиме конфигуратора завершилось с ошибкой. Для дополнительной информации смотрите логи")
-//    }
+    if (returnCode != 0) {
+        utils.raiseError("Обновление базы ${ibConnection} в режиме конфигуратора завершилось с ошибкой. Для дополнительной информации смотрите логи")
+    }
 }
