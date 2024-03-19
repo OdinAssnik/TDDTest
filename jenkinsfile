@@ -26,7 +26,9 @@ pipeline {
     stages {
         stage("Запуск"){
             steps{
-                updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
+
+                bat "chcp 65001\n vrunner loadrepo --storage-name ""C:/Users/Адрей/OneDrive/Рабочий стол/МОЯ ВАНЕССА/хранилище"" --storage-user ""Администратор"" --storage-pwd ""123456"" --ibconnection ""/FC:/Users/Адрей/OneDrive/Документы/1C/Platform8Demo1"" --db-user ""Администратор"" --db-pwd ""123456"""
+             //   updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
             }
       }
     }
