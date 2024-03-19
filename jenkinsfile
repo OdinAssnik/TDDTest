@@ -26,6 +26,7 @@ pipeline {
     stages {
         stage("Запуск"){
             steps{
+                prHelpers = new ProjectHelpers()
             //    updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
             }
       }
