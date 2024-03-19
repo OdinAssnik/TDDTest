@@ -26,7 +26,7 @@ pipeline {
     stages {
         stage("Запуск"){
             steps{
-                updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
+            //    updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
             }
       }
     }
