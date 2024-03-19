@@ -38,7 +38,7 @@ def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConne
     return {
         stage("Загрузка из хранилища") {
             stage("Загрузка из хранилища") {
-                timestamps {
+                //timestamps {
                     prHelpers = new ProjectHelpers()
 
                 //if (storage1cPath == null || storage1cPath.isEmpty()) {
@@ -50,7 +50,7 @@ def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConne
                 prHelpers.loadCfgFrom1CStorage(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
                 prHelpers.updateInfobase(v8version, ibConnection, ibUser, ibPassword)
 
-                }            
+                //}            
             }        
         }
     }
