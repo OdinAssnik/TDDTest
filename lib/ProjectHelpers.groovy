@@ -41,3 +41,36 @@ def loadCfgFrom1CStorage(platform1c, storages1cPath, storageUser, storagePasswor
    returnCode = utils.cmd("runner loadrepo --storage-name ${storages1cPath} --storage-user ${storageUser} ${storagePassword} --ibconnection ${ibConnection} --db-user ${ibUser} --db-pwd ${db-pwd} ${ibPassword}")
 
 }
+
+// Обновляет базу в режиме конфигуратора. Аналог нажатия кнопки f7
+//
+// Параметры:
+//
+//  ibConnection - строка соединения, например /Sdevadapter\template_adapter_adapter
+//  platform - полный номер платформы 1с
+//  admin1cUser - администратор базы
+//  admin1cPassword - пароль администратора базы
+//
+def updateInfobase(v8version, ibConnection, ibUser, ibPassword) {
+
+    utils = new Utils()
+
+     admin1cUserLine = "";
+    if (!ibUser.isEmpty()) {
+        admin1cUserLine = "--db-user ${ibUser}"
+    }
+    admin1cPassLine = "";
+    if (!ibPassword.isEmpty()) {
+        admin1cPassLine = "--db-pwd ${ibPassword}"
+    }
+    platformLine = ""
+    if (platform != null && !v8version.isEmpty()) {
+        platformLine = "--v8version ${platform}"
+    }
+
+    returnCode = utils.cmd("runner updatedb --ibconnection ${connString} ${admin1cUserLine} ${admin1cPassLine} ${platformLine}")
+
+//    if (returnCode != 0) {
+//        utils.raiseError("Обновление базы ${connString} в режиме конфигуратора завершилось с ошибкой. Для дополнительной информации смотрите логи")
+//    }
+}
