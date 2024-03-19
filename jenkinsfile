@@ -26,14 +26,16 @@ pipeline {
     stages {
         stage("Запуск"){
             steps{
-                updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
+                //updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
+                updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection)
             }
       }
     }
 }
 
 
-def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword) {
+//def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword) {
+def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection) {
     return {
         stage("Загрузка из хранилища") {
             stage("Загрузка из хранилища") {
