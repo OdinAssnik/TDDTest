@@ -37,7 +37,7 @@ pipeline {
 
 def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword) {
 //def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection) {
-    return {
+    //return {
         stage("Загрузка из хранилища") {
             stage("Загрузка из хранилища") {
                 bat script: "chcp 65001\n call vrunner loadrepo" 
@@ -56,5 +56,5 @@ def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConne
                 //}            
             }        
         }
-    }
+    //}
 }
