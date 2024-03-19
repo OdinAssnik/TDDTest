@@ -27,7 +27,6 @@ pipeline {
         stage("Запуск"){
             steps{
                 updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
-                //updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConnection)
             }
       }
     }
@@ -46,11 +45,11 @@ def updateDbTask(v8version, storage1cPath, storageUser, storagePassword, ibConne
                 //    return
                 //}
 
-                //prHelpers.loadCfgFrom1CStorage(storage1cPath, storageUser, storagePwd, connString, admin1cUser, admin1cPwd, platform1c)
                 //prHelpers.updateInfobase(connString, admin1cUser, admin1cPwd, platform1c)
 
-                prHelpers.loadCfgFrom1CStorage1(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
-                //    prHelpers.loadCfgFrom1CStorage1()
+                prHelpers.loadCfgFrom1CStorage(v8version, storage1cPath, storageUser, storagePassword, ibConnection, ibUser, ibPassword)
+                prHelpers.updateInfobase(v8version, ibConnection, ibUser, ibPassword)
+
                 }            
             }        
         }
