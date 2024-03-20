@@ -47,16 +47,16 @@ def loadCfgFrom1CStorage(platform1c, storages1cPath, storageUser, storagePasswor
 //
 // Параметры:
 //
-//  ibConnection - строка соединения, например /Sdevadapter\template_adapter_adapter
-//  platform - полный номер платформы 1с
-//  admin1cUser - администратор базы
-//  admin1cPassword - пароль администратора базы
+//  v8version - номер платформы 1с
+//  ibConnection - строка соединения информационной базы
+//  ibUser - администратор базы
+//  ibPassword - пароль администратора базы
 //
 def updateInfobase(v8version, ibConnection, ibUser, ibPassword) {
 
     utils = new Utils()
 
-     admin1cUserLine = "";
+    admin1cUserLine = "";
     if (!ibUser.isEmpty()) {
         admin1cUserLine = "--db-user ${ibUser}"
     }
